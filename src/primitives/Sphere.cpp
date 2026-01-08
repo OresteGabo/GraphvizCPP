@@ -2,7 +2,7 @@
 // Created by muhirwa gabo Oreste on 08/11/2025.
 //
 
-#include "Sphere.h"
+#include "../../include/primitives/Sphere.h"
 #include <cmath>
 
 Sphere::Sphere(float radius, int slices, int stacks)
