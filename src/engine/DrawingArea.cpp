@@ -142,7 +142,7 @@ void DrawingArea::initializeGL()
     m_shapes.append(cube);
 
     // 3.2. Create a Sphere
-    auto sphere = new Sphere(15.0f, 5, 6);
+    auto sphere = new Sphere(15.0f, 32, 16);
     sphere->setPosition(QVector3D(-30.0f, 15.0f, 0.0f));
     sphere->setColor(QVector4D(0.0f, 0.5f, 1.0f, 1.0f)); // blue
     sphere->init();
