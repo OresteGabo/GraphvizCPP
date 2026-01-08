@@ -2,7 +2,7 @@
 // Created by muhirwa gabo Oreste on 08/11/2025.
 //
 
-#include "Shape.h"
+#include "../../include/engine/Shape.h"
 
 #include <QOpenGLShaderProgram>
 #include <QDebug>
