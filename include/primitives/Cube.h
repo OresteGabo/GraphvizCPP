@@ -6,7 +6,7 @@
 #include <QOpenGLVertexArrayObject>
 #include <QVector>
 #include <QOpenGLFunctions>
-#include "Shape.h"
+#include "../engine/Shape.h"
 
 class QOpenGLShaderProgram;
 
