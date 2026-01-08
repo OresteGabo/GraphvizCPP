@@ -10,7 +10,7 @@
 #include <QVector3D>
 #include <QOpenGLDebugLogger>
 
-#include "Cube.h"
+#include "../primitives/Cube.h"
 #include "CompositeObject.h"
 
 
