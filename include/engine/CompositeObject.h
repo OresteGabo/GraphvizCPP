@@ -14,11 +14,12 @@
 #include <QOpenGLShaderProgram>
 
 
+
 // Hériter de Shape permet à CompositeObject d'avoir m_position et d'être traité comme n'importe quel objet
 class CompositeObject : public Shape {
 public:
     CompositeObject(const QVector3D &pos = QVector3D(0,0,0)) : Shape(pos) {}
-    virtual ~CompositeObject();
+    ~CompositeObject()override;
 
     void addShape(Shape* shape, const QMatrix4x4 &transform);
 
