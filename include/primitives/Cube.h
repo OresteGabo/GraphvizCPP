@@ -1,11 +1,7 @@
 #ifndef ARCHIVIZ_CUBE_H
 #define ARCHIVIZ_CUBE_H
 
-#include <QVector3D>
-#include <QOpenGLBuffer>
-#include <QOpenGLVertexArrayObject>
-#include <QVector>
-#include <QOpenGLFunctions>
+
 #include "../engine/Shape.h"
 
 class QOpenGLShaderProgram;
@@ -22,10 +18,7 @@ public:
     QVector3D getPosition() const { return m_position; }
 
 private:
-
     float m_size;
-
-
 };
 
 #endif // ARCHIVIZ_CUBE_H
