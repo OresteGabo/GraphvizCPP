@@ -1,0 +1,81 @@
+@startuml
+title Architecture du Moteur 3D - ArchiViz
+
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #F9F9F9
+
+abstract class Shape {
+  # m_position: QVector3D
+  # m_color: QVector4D
+  # m_vao: QOpenGLVertexArrayObject
+  # m_vbo: QOpenGLBuffer
+  # m_ebo: QOpenGLBuffer
+  # m_vertices: QVector<float>
+  # m_indices: QVector<GLuint>
+  + {abstract} generateGeometry()
+  + init()
+  + drawGeometry()
+  + setPosition(p: QVector3D)
+  + setColor(c: QVector4D)
+}
+
+class Cube {
+  - m_size: float
+  + generateGeometry()
+}
+
+class Sphere {
+  - m_radius: float
+  - m_slices: int
+  - m_stacks: int
+  + generateGeometry()
+}
+
+class Pyramid {
+  - m_base: float
+  - m_height: float
+  + generateGeometry()
+}
+
+class Cylinder {
+  - m_radius: float
+  - m_height: float
+  - m_segments: int
+  + generateGeometry()
+}
+
+class CompositeObject {
+  - m_shapes: QList<Entry>
+  + addShape(shape: Shape*, transform: QMatrix4x4)
+  + draw(program: QOpenGLShaderProgram*, baseMatrix: QMatrix4x4)
+}
+
+class Chair {
+  - m_scale: float
+  + buildGeometry()
+  + init()
+}
+
+class DrawingArea {
+  - m_program: QOpenGLShaderProgram
+  - m_shapes: QVector<Shape*>
+  - m_view: QMatrix4x4
+  - m_projection: QMatrix4x4
+  # initializeGL()
+  # paintGL()
+  # resizeGL()
+  - initializeShaders()
+}
+
+' Relations d'héritage
+Shape <|-- Cube
+Shape <|-- Sphere
+Shape <|-- Pyramid
+Shape <|-- Cylinder
+CompositeObject <|-- Chair
+
+' Relations de composition/utilisation
+DrawingArea o-- Shape
+CompositeObject "1" *-- "*" Shape : contient >
+
+@enduml
