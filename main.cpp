@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     mainWindow.setWindowTitle("ArchiViz - Clean OpenGL Example");
     mainWindow.resize(1200, 800);
 
-    DrawingArea *drawingArea = new DrawingArea(&mainWindow);
+    auto drawingArea = new DrawingArea(&mainWindow);
     mainWindow.setCentralWidget(drawingArea);
 
     mainWindow.show();
