@@ -6,7 +6,7 @@
 #define ARCHIVIZ_PYRAMID_H
 
 #pragma once
-#include "Shape.h"
+#include "../engine/Shape.h"
 
 class Pyramid : public Shape {
 public:
