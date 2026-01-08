@@ -1,4 +1,4 @@
-#include "Cube.h"
+#include "../../include/primitives/Cube.h"
 #include <QOpenGLShaderProgram>
 #include <QDebug>
 
