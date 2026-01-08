@@ -1,13 +1,13 @@
-#include "DrawingArea.h"
+#include "../../include/engine/DrawingArea.h"
 #include <QMouseEvent>
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
 #include <QVector4D>
 #include <QDebug>
-#include "Shape.h"
-#include "Pyramid.h"
-#include "Cube.h"
-#include "Sphere.h"
+#include "../../include/engine/Shape.h"
+#include "../../include/primitives/Pyramid.h"
+#include "../../include/primitives/Cube.h"
+#include "../../include/primitives/Sphere.h"
 // Simple shaders (position + uniform color)
 static const char *vertexShaderSource =
     "attribute vec3 position;\n"
@@ -70,10 +70,6 @@ DrawingArea::DrawingArea(QWidget *parent)
 {
     setMouseTracking(true);
 }
-
-// DrawingArea.cpp
-
-// ... (other DrawingArea functions)
 
 void DrawingArea::paintGL()
 {
@@ -163,12 +159,12 @@ void DrawingArea::initializeGL()
 void DrawingArea::initializeShaders()
 {
     // Compile
-    if (!m_program.addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource)) {
-        qCritical() << "Vertex shader compile error:" << m_program.log();
+    if (!m_program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/default.vert")) {
+        qCritical() << "Vertex shader error:" << m_program.log();
         return;
     }
-    if (!m_program.addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource)) {
-        qCritical() << "Fragment shader compile error:" << m_program.log();
+    if (!m_program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/default.frag")) {
+        qCritical() << "Fragment shader error:" << m_program.log();
         return;
     }
 
