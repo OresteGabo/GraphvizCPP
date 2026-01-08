@@ -2,7 +2,7 @@
 // Created by muhirwa gabo Oreste on 08/11/2025.
 //
 
-#include "Cylinder.h"
+#include "../../include/primitives/Cylinder.h"
 #include <cmath>
 
 Cylinder::Cylinder(float radius, float height, int segments)
