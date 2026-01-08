@@ -2,7 +2,7 @@
 // Created by muhirwa gabo Oreste on 08/11/2025.
 //
 
-#include "CompositeObject.h"
+#include "../../include/engine/CompositeObject.h"
 
 void CompositeObject::addShape(Shape* shape, const QMatrix4x4 &transform) {
     //m_shapes.append({shape, transform});
@@ -44,3 +44,10 @@ void CompositeObject::draw(QOpenGLShaderProgram *program, QMatrix4x4 baseMatrix)
 
     program->release();
 }
+void CompositeObject::init() {
+    initializeOpenGLFunctions();
+    for (auto& entry : m_shapes) {
+        if (entry.shape) entry.shape->init();
+    }
+}
+CompositeObject::~CompositeObject(){}
