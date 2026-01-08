@@ -24,7 +24,7 @@ public:
     virtual void generateGeometry() = 0;
 
     // Common OpenGL setup function
-    void init();
+    virtual void init();
 
     // Common drawing function
     void drawGeometry();
