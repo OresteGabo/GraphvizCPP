@@ -136,20 +136,20 @@ void DrawingArea::initializeGL()
     // 3. Create and Initialize ALL shapes (Context is current)
 
     // 3.1. Create the Cube
-    Cube *cube = new Cube(QVector3D(30.0f, 10.0f, 0.0f), 20.0f);
+    auto cube = new Cube(QVector3D(30.0f, 10.0f, 0.0f), 20.0f);
     cube->setColor(QVector4D(1.0f, 0.85f, 0.0f, 1.0f)); // yellow
     cube->init();
     m_shapes.append(cube);
 
     // 3.2. Create a Sphere
-    Shape *sphere = new Sphere(15.0f, 32, 16);
+    auto sphere = new Sphere(15.0f, 5, 6);
     sphere->setPosition(QVector3D(-30.0f, 15.0f, 0.0f));
     sphere->setColor(QVector4D(0.0f, 0.5f, 1.0f, 1.0f)); // blue
     sphere->init();
     m_shapes.append(sphere);
 
     // 3.3. Create a Pyramid
-    Pyramid *pyramid = new Pyramid(20.0f, 30.0f);
+    auto pyramid = new Pyramid(20.0f, 30.0f);
     pyramid->setPosition(QVector3D(0.0f, 15.0f, 30.0f));
     pyramid->setColor(QVector4D(0.8f, 0.2f, 0.8f, 1.0f)); // magenta
     pyramid->init();
