@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QMainWindow>
-#include "DrawingArea.h"
+#include "include/engine/DrawingArea.h"
 
 int main(int argc, char *argv[])
 {
