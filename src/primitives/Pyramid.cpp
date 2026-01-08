@@ -2,7 +2,7 @@
 // Created by muhirwa gabo Oreste on 08/11/2025.
 //
 
-#include "Pyramid.h"
+#include "../../include/primitives/Pyramid.h"
 
 Pyramid::Pyramid(float base, float height) : m_base(base), m_height(height) {
     generateGeometry();
