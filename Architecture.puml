@@ -1,8 +1,9 @@
 @startuml
-title Architecture du Moteur 3D - ArchiViz
+title Architecture ArchiViz - Moteur 3D (Version Janvier 2026)
 
 skinparam classAttributeIconSize 0
-skinparam backgroundColor #F9F9F9
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 10
 
 abstract class Shape {
   # m_position: QVector3D
@@ -10,50 +11,26 @@ abstract class Shape {
   # m_vao: QOpenGLVertexArrayObject
   # m_vbo: QOpenGLBuffer
   # m_ebo: QOpenGLBuffer
+  # m_geometryVertices: QVector<QVector3D>
+  # m_geometryNormals: QVector<QVector3D>
   # m_vertices: QVector<float>
   # m_indices: QVector<GLuint>
   + {abstract} generateGeometry()
   + init()
   + drawGeometry()
-  + setPosition(p: QVector3D)
-  + setColor(c: QVector4D)
-}
-
-class Cube {
-  - m_size: float
-  + generateGeometry()
-}
-
-class Sphere {
-  - m_radius: float
-  - m_slices: int
-  - m_stacks: int
-  + generateGeometry()
-}
-
-class Pyramid {
-  - m_base: float
-  - m_height: float
-  + generateGeometry()
-}
-
-class Cylinder {
-  - m_radius: float
-  - m_height: float
-  - m_segments: int
-  + generateGeometry()
 }
 
 class CompositeObject {
-  - m_shapes: QList<Entry>
+  # m_shapes: QList<Entry>
   + addShape(shape: Shape*, transform: QMatrix4x4)
-  + draw(program: QOpenGLShaderProgram*, baseMatrix: QMatrix4x4)
+  + draw(program: QOpenGLShaderProgram*, viewProj: QMatrix4x4)
+  + init() <<override>>
 }
 
 class Chair {
   - m_scale: float
   + buildGeometry()
-  + init()
+  + init() <<override>>
 }
 
 class DrawingArea {
@@ -61,21 +38,44 @@ class DrawingArea {
   - m_shapes: QVector<Shape*>
   - m_view: QMatrix4x4
   - m_projection: QMatrix4x4
-  # initializeGL()
-  # paintGL()
-  # resizeGL()
+  - m_lightPosition: QVector3D
+  - m_viewPosition: QVector3D
+  # initializeGL() <<override>>
+  # paintGL() <<override>>
+  # resizeGL() <<override>>
   - initializeShaders()
+  - drawShapes()
 }
 
-' Relations d'héritage
+' Primitives
+class Cube {
+  - m_size: float
+  + generateGeometry() <<override>>
+}
+class Sphere {
+  - m_radius: float
+  + generateGeometry() <<override>>
+}
+class Cylinder {
+  - m_radius: float
+  - m_height: float
+  + generateGeometry() <<override>>
+}
+class Pyramid {
+  - m_base: float
+  - m_height: float
+  + generateGeometry() <<override>>
+}
+
+' Relations
 Shape <|-- Cube
 Shape <|-- Sphere
-Shape <|-- Pyramid
 Shape <|-- Cylinder
+Shape <|-- Pyramid
+Shape <|-- CompositeObject
 CompositeObject <|-- Chair
 
-' Relations de composition/utilisation
-DrawingArea o-- Shape
-CompositeObject "1" *-- "*" Shape : contient >
-
+DrawingArea "1" o-- "*" Shape : gère >
+CompositeObject "1" *-- "*" Entry : contient >
+Entry ..> Shape : référence >
 @enduml
