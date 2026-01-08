@@ -5,7 +5,7 @@
 #ifndef ARCHIVIZ_CHAIR_H
 #define ARCHIVIZ_CHAIR_H
 
-#include "CompositeObject.h"
+#include "../engine/CompositeObject.h"
 #include "Cube.h"
 #include "Cylinder.h"
 
